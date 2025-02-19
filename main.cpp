@@ -93,6 +93,17 @@ void enviarDadosIoT() {
     Serial.println(tempDB[recordIndex].timestamp);
 }
 
+// Função para ler o valor do sensor de temperatura com tratamento de erro
+float capturarValorSensor() {
+    int leitura = analogRead(SENSOR_PIN);
+    if (leitura == -1) {
+        Serial.println("Erro na leitura do sensor.");
+        return -1;
+    }
+    return leitura;
+}
+
+
 // Função para exibir o conteúdo completo do pseudo banco de dados
 void exibirBancoDados() {
     Serial.println("Exibindo banco de dados simulado:");
